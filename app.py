@@ -5,7 +5,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def hello():
-    return "Hello, CloudCity!"
+    return "Hello from CloudCity v2!"
 
 @app.route("/about")
 def about():
