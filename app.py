@@ -9,7 +9,7 @@ def hello():
 
 @app.route("/about")
 def about():
-    return "This is CloudCity!"
+    return "This is CloudCity v2!"
 
 @app.route("/hello", methods=["POST"])
 def hello_post():
