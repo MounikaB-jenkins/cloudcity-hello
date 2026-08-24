@@ -5,7 +5,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def hello():
-    return "Hello from Master Branch!"
+    return "Hello from Master Test!"
 
 @app.route("/about")
 def about():
