@@ -1,0 +1,33 @@
+name: CloudCity CI
+
+on:
+  push:
+    branches:
+      - main
+      - feature-practice
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install Flask
+        run: pip install flask
+
+      - name: Syntax check
+        run: python -m py_compile app.py
+
+      - name: Test application
+        run: |
+          python -c "import app; print('CloudCity app imported successfully')"
