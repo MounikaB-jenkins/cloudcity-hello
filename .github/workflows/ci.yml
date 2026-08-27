@@ -1,0 +1,44 @@
+name: CloudCity CI
+
+on:
+  push:
+    branches:
+      - main
+      - feature-practice
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install Flask
+        run: pip install flask
+
+      - name: Syntax check
+        run: python -m py_compile app.py
+
+      - name: Test application
+        run: |
+          python -c "import app; print('CloudCity app imported successfully')"
+
+      - name: Build artifact
+        run: |
+          mkdir -p dist
+          zip -r dist/cloudcity-hello.zip app.py app1.py app2.py data.json load_balancer.py
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: cloudcity-hello
+          path: dist/cloudcity-hello.zip
